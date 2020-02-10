@@ -1,0 +1,32 @@
+<header>
+  <h1>Edit Your Post</h1>
+</header>
+
+<section>
+  <article>
+    <div class="col-md-4">
+      <div class="card-body">
+        <form class="" action="/posts/<%= @post.id %>" method="POST">
+          <input type="hidden" id="hidden" name="_method" value="patch">
+
+            <div class="form-group">
+                <textarea class="form-control form-control-lg" id="title" name="title" rows="2" cols="75%"><%=@post.title%></textarea>
+                <textarea class="form-control form-control-lg" id="content" name="content" rows="14" cols="75%"><%=@post.content%></textarea>
+            </div>
+          <div class="row">
+            <div class="col">
+              <input class="btn btn-outline-success btn-lg btn-block" type="submit" id="submit" value="Update Post">
+            </div>
+          </div>
+        </form>
+      <div>
+        <form action="/posts/<%=@post.id%>" method="get">
+          <input type="hidden" id="hidden" name="_method" value="Cancel">
+          <input type="submit" id="submit" class="btn btn-primary" style="font-size:10px"; value="Cancel">
+        </form>
+      </div>
+      </div>
+    </div>
+  </div>
+</article>
+</section>
