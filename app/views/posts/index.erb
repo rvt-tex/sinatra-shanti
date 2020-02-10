@@ -1,0 +1,42 @@
+<header>
+  <h1>All Posts</h1>
+</header>
+
+<hr />
+
+<section>
+    <picture>
+        <img src="images/beach.jpg" alt="sunset" width="50%" height="auto">
+    </picture>
+  
+    <article>
+        <div class="col-md-8 text-primary text-center">
+            <% if flash[:message] %>
+                <div class="alert alert-danger">
+            <%=flash[:message]%>
+                </div>
+            <% end %>
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Welcome, <%=current_user.username.capitalize%></h2>
+                    </div>
+                <ul class="list-group">
+                    <% Post.all.reverse_each do |post| %>
+                        <li class="list-group-item">
+
+                      
+                            <blockquote class="blockquote mb-0">
+                                <a href="/posts/<%= post.id %>" class="card-link"><%=post.title%></a>
+                                <a href="/posts/<%= post.id %>" class="card-link"><%=post.content%></a>
+                <footer class="blockquote-footer">
+                    <a href="/posts/<%= post.id %>" class="card-link">Created by <cite><%=post.user.slug%> on <%=post.created_at.strftime("%A, %B %d, %Y")%></a>                         
+    
+                                 </footer>
+                            </blockquote>
+                        </li>
+                    <% end %>
+                </ul>
+                </div>
+        </div>
+    </article>
+</section>
