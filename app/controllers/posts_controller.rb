@@ -70,4 +70,18 @@ class PostsController < ApplicationController
           redirect to "/login"
         end
     end
+
+    get '/posts/:id' do
+        if is_logged_in?
+          @post = Post.find_by_id(params[:id])
+          if @post
+            erb :'/posts/show'
+          else
+            redirect to "/posts"
+          end
+        else
+          flash[:message] = "You need to be logged in first to access this page."
+          redirect to "/login"
+        end
+    end
 end 
