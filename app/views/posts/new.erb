@@ -1,0 +1,39 @@
+<header>
+  <h1>New Post</h1>
+</header>
+
+<section>  
+    <article>
+        <% if is_logged_in? %>
+            <% @error %>
+                <div class="col-md-4">
+            <% if flash[:message] %>
+                <div class="alert alert-danger">
+            <%=flash[:message]%>
+                </div>
+        <% end %>
+
+        <div class="card">
+            <div class="card-header">  
+        </div>
+        <div class="card-body">
+            <form action="/posts" method="POST">
+                <div class="form-group" contentEditable="true">
+                    <textarea class="form-control form-control-lg" id="title" name="title" rows="2" cols="75%" placeholder="Enter title here"></textarea>
+                </div>
+                <div class="form-group" contentEditable="true">
+                    <textarea class="form-control form-control-lg" id="content" name="content" rows="18" cols="75%" placeholder="Enter content here"></textarea>
+                </div>
+                <div class="form-group">
+                    <input class="btn btn-primary" type="submit" id="Date.current" value="Post">
+                    
+                </div>
+            </form>
+        <% else %>
+            <h1> You Must Be Logged in to share your thoughts </h1>
+        <% end %>
+        </div>
+        </div>
+        </div>
+    </article>
+</section>
