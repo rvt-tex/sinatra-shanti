@@ -1,0 +1,48 @@
+<header>
+  <h1>Sign Up</h1>
+</header>
+
+<section>
+    <picture>
+        <img src="images/zen2.jpg" alt="green tree" width="50%" height="320">
+    </picture>
+
+    <article>
+        <br>
+        <div class="col-md-4">
+            <% if flash[:message] %>
+                <div class="alert alert-danger">
+                    <%=flash[:message]%>
+                </div>
+            <% end %>
+        <div class="card">
+            <div class="card-body">
+                <form class="" action="/signup" method="POST">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                            <input class="form-control form-control-lg" id="username" type="text" name="username" placeholder="Enter a valid username">
+                    </div>
+                <br>
+            </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+              <input class="form-control form-control-lg" id="email" type="email" name="email" placeholder="Enter a valid email">
+        </div>
+    <br>
+        <div class="form-group">
+            <label for="password">Password</label>
+              <input class="form-control form-control-lg" id="password" type="password" name="password" placeholder="Enter your password">
+        </div>
+    <br>
+        <input class="btn btn-block btn-primary" type="submit" id="submit" value="Sign Up">
+                </form>
+
+    <br><br><br>
+
+      Already have an account? Login here!
+            <form class="" action="/login" method="post">								
+                <input type="submit" id="submit" class="btn btn-primary" value="Log In">
+            </form>
+        </div>
+    </article>
+</section>
