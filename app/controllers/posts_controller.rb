@@ -50,4 +50,24 @@ class PostsController < ApplicationController
         end
     end
 
+    patch '/posts/:id' do
+        if is_logged_in? 
+          @post = current_user.posts.find_by_id(params[:id])
+          if @post
+            @post.title = params[:title]
+            @post.content = params[:content]
+            if @post.save
+              flash[:message] = "Your post was updated successfully!"
+              redirect to "/posts/#{@post.id}"
+            else
+              redirect to "/posts/#{@post.id}/edit"
+            end
+          else
+            redirect to "/posts"
+          end
+        else
+          flash[:message] = "You need to be logged in first to access this page."
+          redirect to "/login"
+        end
+    end
 end 
