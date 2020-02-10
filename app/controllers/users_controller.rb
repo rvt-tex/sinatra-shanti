@@ -24,4 +24,12 @@ class UsersController < ApplicationController
         erb :'/users/show'
         #redirect "/posts"
     end 
+
+    get '/login' do
+        if is_logged_in?
+          redirect "/posts"
+        else
+          erb :login
+        end
+    end
 end 
