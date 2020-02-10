@@ -21,8 +21,8 @@ class UsersController < ApplicationController
 
     get '/users/:slug' do
         @user = User.find_by_slug(params[:slug])
-        erb :'/users/show'
-        #redirect "/posts"
+        #erb :'/users/show'
+        redirect "/posts"
     end 
 
     get '/login' do
