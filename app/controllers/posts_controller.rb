@@ -35,4 +35,19 @@ class PostsController < ApplicationController
         end
     end
 
+    get '/posts/:id/edit' do
+        if is_logged_in? 
+          @post = current_user.posts.find_by_id(params[:id])
+          if @post
+            erb :'/posts/edit'
+          else
+            flash[:message] = "Unable to edit this post since it doesn't belong to you."
+            redirect to "/posts"
+          end
+        else
+          flash[:message] = "You need to be logged in first to access this page."
+          redirect to "/login"
+        end
+    end
+
 end 
