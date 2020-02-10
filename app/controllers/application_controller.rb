@@ -13,8 +13,25 @@ class ApplicationController < Sinatra::Base
     register Sinatra::Flash
   end
 
-  get "/" do
-    erb :welcome
+  get '/' do
+    erb :index
   end
 
+  get '/' do
+    if !is_logged_in?
+      erb :index
+    else
+      redirect "/posts"
+    end
+  end
+    
+  helpers do
+    def is_logged_in?
+      !!session[:user_id]
+    end
+    
+    def current_user
+      User.find(session[:user_id])
+    end
+  end
 end
