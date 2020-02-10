@@ -32,4 +32,16 @@ class UsersController < ApplicationController
           erb :login
         end
     end
+
+    post '/login' do
+        user = User.find_by(username:params[:username])
+        if user && user.authenticate(params[:password])
+          session[:user_id] = user.id
+          redirect "/posts"
+        else
+          flash[:message] = "Please enter valid login information to gain access, your username or password did not match.
+                              Please Try Again."
+          redirect "/login"
+        end
+    end 
 end 
