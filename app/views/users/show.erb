@@ -1,0 +1,42 @@
+<header>
+  <h1>ALL YOUR POSTS</h1>
+</header>
+
+<section>
+    <picture>
+        <img src="images/shanti_logo.png" alt="shanti" width="50%" height="auto">
+    </picture>
+
+    <article>
+        <div class="col-md-8 text-primary text-center">
+            <% if @user.posts.empty? %>
+                <div>
+                    <% if @user==current_user %>
+                        <h3>You havent shared your thoughts with us as yet!! Click on the new post button and begin sharing 
+                            your thoughts. We are so eager to hear from you.</h3>
+            <% end %>
+                </div>
+            <% else %>
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="card-title"><%=@user.username.capitalize%> posts!</h1>
+                    </div>
+                    <ul class="list-group">
+                        <% @user.posts.each do |post| %>
+                            <li class="list-group-item">
+                                <blockquote class="blockquote mb-0">
+                                    <a href="/posts/<%= post.id %>" class="card-link"><%=post.title%></a>
+                                            <a href="/posts/<%= post.id %>" class="card-link"><%=post.content%></a>
+                                        <footer class="blockquote-footer">  
+                                            <a href="/posts/<%= post.id %>" class="card-link">Created by <cite><%=post.user.slug%> on <%=post.created_at.strftime("%A, %B %d, %Y")%></a> 
+                                                <br>
+                                        </footer>
+                                </blockquote>
+                            </li>
+            <% end %>
+                    </ul>
+        </div>
+            <% end %>
+        </div>
+    </article>
+</section>
