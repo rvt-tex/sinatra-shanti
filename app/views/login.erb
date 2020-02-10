@@ -1,0 +1,47 @@
+<header>
+  <h1>Log In</h1>
+</header>
+
+<section>
+    <picture>
+        <img src="images/beach.jpg" alt="green tree" width="50%" height="379">
+    </picture>
+
+    <article>
+        <br>
+        <div class="col-md-4">
+            <% if flash[:message] %>
+                <div class="alert alert-danger">
+                    <%=flash[:message]%>
+                </div>
+            <% end %>
+        <div class="card">
+            <div class="card-header">
+        </div>
+            <div class="card-body">
+                <form action="/login" method="POST">
+                    <div class="form-group">
+                        <label for="username">Username</label><br>
+                            <input class="form-control form-control-lg" id="username" type="text" name="username" placeholder="Enter username">
+                    </div>
+            </div>
+        <br>
+        <div class="form-group">
+          <label for="password">Password</label><br>
+            <input class="form-control form-control-lg" id="password" type="password" name="password" placeholder="Enter your password">
+        </div>
+        <br>
+            <input type="submit" id="submit" class="btn btn-primary" value="Log In">
+        </form>
+
+        <br><br><br><br><br>
+          
+      Don't have an account? Sign up here!
+            <div>
+                <form class="" action="/signup" method="get">								
+                    <input type="submit" id="submit" class="btn btn-primary" value="Sign Up">
+                </form>
+            </div>
+        </div>
+    </article>
+</section>
