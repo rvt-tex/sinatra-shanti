@@ -84,4 +84,21 @@ class PostsController < ApplicationController
           redirect to "/login"
         end
     end
+
+    delete '/posts/:id' do
+        if is_logged_in? 
+          post = current_user.posts.find_by_id(params[:id])
+          if post
+            post.delete
+            flash[:message] = "Your post was deleted."
+            redirect to "/posts"
+          else
+            flash[:message] = "Unable to delete this post since it doesn't belong to you."
+            redirect to "/posts"
+          end
+        else
+          flash[:message] = "You need to be logged in first to access this page."
+          redirect to "/login"
+        end
+    end
 end 
