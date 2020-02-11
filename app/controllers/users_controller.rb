@@ -9,20 +9,19 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do
-        @user = User.new(params)
-        if @user.save
-          session[:user_id] = @user.id
-          redirect to '/users/:slug'
+        current_user = User.new(params)
+        if current_user.save
+          session[:user_id] = current_user.id
+          redirect to "/users/#{current_user.id}"
         else
           flash[:message] = "Please enter a valid username and email address to gain access."
           redirect to "/signup"
         end
     end
 
-    get '/users/:slug' do
-        @user = User.find_by_slug(params[:slug])
-        #erb :'/users/show'
-        redirect "/posts"
+    get '/users/:id' do
+        current_user
+        erb :'/users/show'
     end 
 
     get '/login' do
@@ -34,9 +33,9 @@ class UsersController < ApplicationController
     end
 
     post '/login' do
-        user = User.find_by(username:params[:username])
-        if user && user.authenticate(params[:password])
-          session[:user_id] = user.id
+        current_user = User.find_by(username:params[:username])
+        if current_user && current_user.authenticate(params[:password])
+          session[:user_id] = current_user.id
           redirect "/posts"
         else
           flash[:message] = "Please enter valid login information to gain access, your username or password did not match.
