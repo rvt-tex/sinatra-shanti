@@ -9,26 +9,25 @@
 
     <article>
         <div class="col-md-8 text-primary text-center">
-            <% if @user.posts.empty? %>
+            <% if current_user.posts.empty? %>
                 <div>
-                    <% if @user==current_user %>
-                        <h3>You havent shared your thoughts with us as yet!! Click on the new post button and begin sharing 
+                    <h1>Namaste, <%=current_user.username.capitalize%></h1>
+                        <h3>You havent shared your thoughts with us yet!! Click on the new post button and begin sharing 
                             your thoughts. We are so eager to hear from you.</h3>
-            <% end %>
                 </div>
             <% else %>
                 <div class="card">
                     <div class="card-header">
-                        <h1 class="card-title"><%=@user.username.capitalize%> posts!</h1>
+                        <h1 class="card-title"><%=current_user.username.capitalize%> These are all your Posts!</h1>
                     </div>
                     <ul class="list-group">
-                        <% @user.posts.each do |post| %>
+                        <% current_user.posts.each do |post| %>
                             <li class="list-group-item">
                                 <blockquote class="blockquote mb-0">
                                     <a href="/posts/<%= post.id %>" class="card-link"><%=post.title%></a>
                                             <a href="/posts/<%= post.id %>" class="card-link"><%=post.content%></a>
                                         <footer class="blockquote-footer">  
-                                            <a href="/posts/<%= post.id %>" class="card-link">Created by <cite><%=post.user.slug%> on <%=post.created_at.strftime("%A, %B %d, %Y")%></a> 
+                                            <%=post.created_at.strftime("%A, %B %d, %Y")%>
                                                 <br>
                                         </footer>
                                 </blockquote>

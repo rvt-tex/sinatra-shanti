@@ -18,19 +18,16 @@
             <% end %>
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">Welcome, <%=current_user.username.capitalize%></h2>
+                       <a href="/users/:id class="card-link"><%=current_user.username.capitalize%></a>
                     </div>
                 <ul class="list-group">
                     <% Post.all.reverse_each do |post| %>
                         <li class="list-group-item">
-
-                      
                             <blockquote class="blockquote mb-0">
                                 <a href="/posts/<%= post.id %>" class="card-link"><%=post.title%></a>
                                 <a href="/posts/<%= post.id %>" class="card-link"><%=post.content%></a>
                 <footer class="blockquote-footer">
                     <a href="/posts/<%= post.id %>" class="card-link">Created by <cite><%=post.user.slug%> on <%=post.created_at.strftime("%A, %B %d, %Y")%></a>                         
-    
                                  </footer>
                             </blockquote>
                         </li>
