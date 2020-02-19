@@ -16,6 +16,7 @@ gem "sinatra-flash"
 gem 'jquery'
 gem 'date'
 gem 'sysrandom'
+gem 'slug'
 
 
 group :test do
