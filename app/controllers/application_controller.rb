@@ -14,10 +14,6 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    erb :index
-  end
-
-  get '/' do
     if !is_logged_in?
       erb :index
     else
